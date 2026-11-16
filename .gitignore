@@ -1,0 +1,27 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Secrets
+.env
+# Datasets and training output
+256_ObjectCategories/
+caltech256_yolo_full/
+runs/
+detected_objects/
+*.pt
+*.jpg
+*.png
+!docs/*.png

@@ -1,0 +1,36 @@
+digraph DroneScheme {
+	rankdir=TB size="8,5"
+	start [label="СТАРТ" fillcolor=yellow shape=ellipse style=filled]
+	init [label="Инициализация
+• Библиотеки
+• Подключение к камере
+• Загрузка модели YOLO (Caltech256 — 256 классов)"]
+	loop [label="Запуск цикла"]
+	frame [label="Получение кадра с камеры дрона"]
+	process [label="Обработка кадра
+• Детекция YOLOv8
+• Фильтр >0.4
+• Классы: person, car и 254 других
+• Рамки, центр, размер"]
+	show [label="Показ кадра (RawImage с боксами)"]
+	hud [label="Отображение в HUD
+• YOLO: X объектов
+• Список: class (confidence%)"]
+	keys [label="Проверка клавиш
+• Y: ручная отправка
+• Q: выход"]
+	save [label="Сохранение результатов
+• Обрезка объектов
+• Имя по классу"]
+	end [label="КОНЕЦ" fillcolor=yellow shape=ellipse style=filled]
+	start -> init
+	init -> loop
+	loop -> frame
+	frame -> process
+	process -> show
+	show -> hud
+	hud -> keys
+	keys -> save
+	save -> loop [label="Повтор цикла" style=dashed]
+	keys -> end [label="Выход"]
+}
